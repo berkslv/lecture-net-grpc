@@ -1,0 +1,19 @@
+syntax = "proto3";
+option csharp_namespace = "Books";
+
+service BookService {
+  rpc GetBooks (GetBooksRequest) returns (BookList);
+}
+
+message GetBooksRequest {
+  // Empty request
+}
+
+message BookList {
+  repeated Book books = 1;
+}
+
+message Book {
+  int32 id = 1;
+  string title = 2;
+}
