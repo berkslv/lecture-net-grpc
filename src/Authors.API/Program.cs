@@ -1,4 +1,5 @@
 using Books;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +26,7 @@ builder.Services.AddSingleton(sp =>
 // Add gRPC client
 builder.Services.AddGrpcClient<BookService.BookServiceClient>(options =>
 {
-    options.Address = new Uri("http://localhost:5051");
+    options.Address = new Uri("http://localhost:5851");
 }).ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
 {
     // Only for development
@@ -42,6 +43,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.MapScalarApiReference();
 }
 
 // Map controller endpoints

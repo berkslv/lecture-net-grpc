@@ -8,13 +8,13 @@ namespace Books.API.Controllers;
 public class BooksController : ControllerBase
 {
     [HttpGet]
-    public IActionResult GetBooks()
+    public async Task<IActionResult> GetBooks()
     {
-        var books = new[]
-        {
-            new Book { Id = 1, Title = "Dune" },
-            new Book { Id = 2, Title = "Clean Code" }
-        };
+        var books = new List<Book>();
+        books.Add(new Book { Id = 1, Title = "Dune" });
+        books.Add(new Book { Id = 2, Title = "Clean Code" });
+
+        await Task.Delay(100);
         
         return Ok(books);
     }

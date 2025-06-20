@@ -1,5 +1,6 @@
 syntax = "proto3";
 option csharp_namespace = "Books";
+package books;
 
 service BookService {
   rpc GetBooks (GetBooksRequest) returns (BookList);

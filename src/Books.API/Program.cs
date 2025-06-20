@@ -1,9 +1,12 @@
 using Books.API.Grpc;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
 builder.Services.AddGrpc();
+builder.Services.AddGrpcReflection();
+
 builder.Services.AddControllers();
 
 builder.Services.AddOpenApi();
@@ -14,6 +17,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.MapScalarApiReference();
 
     app.MapGrpcReflectionService();
 }
